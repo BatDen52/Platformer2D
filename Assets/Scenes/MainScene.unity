@@ -2958,6 +2958,10 @@ MonoBehaviour:
   _speedX: 1
   _maxSqrDistance: 0.03
   _waitTime: 2
+  _seeAreaSize: {x: 10, y: 3.5}
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!70 &547998651
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3001,7 +3005,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547998648}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3921,7 +3925,7 @@ GameObject:
   - component: {fileID: 1281949917}
   - component: {fileID: 1281949919}
   - component: {fileID: 1281949920}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
