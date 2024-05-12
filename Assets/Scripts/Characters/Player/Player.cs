@@ -1,14 +1,15 @@
 using UnityEngine;
 
-[RequireComponent(typeof(InputReader), typeof(GroundDetector), typeof(PlayerMover))]
-[RequireComponent(typeof(PlayerAnimator), typeof(CollisionHandler))]
+[RequireComponent(typeof(InputReader), typeof(GroundDetector), typeof(Mover))]
+[RequireComponent(typeof(PlayerAnimator), typeof(CollisionHandler), typeof(Fliper))]
 public class Player : MonoBehaviour
 {
     private InputReader _inputReader;
     private GroundDetector _groundDetector;
-    private PlayerMover _mover;
+    private Mover _mover;
     private PlayerAnimator _animator;
     private CollisionHandler _collisionHandler;
+    private Fliper _fliper;
 
     private IInteractable _interactable;
 
@@ -16,9 +17,10 @@ public class Player : MonoBehaviour
     {
         _groundDetector = GetComponent<GroundDetector>();
         _inputReader = GetComponent<InputReader>();
-        _mover = GetComponent<PlayerMover>();
+        _mover = GetComponent<Mover>();
         _animator = GetComponent<PlayerAnimator>();
         _collisionHandler = GetComponent<CollisionHandler>();
+        _fliper = GetComponent<Fliper>();
     }
 
     private void OnEnable()
@@ -36,7 +38,10 @@ public class Player : MonoBehaviour
         _animator.SetSpeedX(_inputReader.Direction);
 
         if (_inputReader.Direction != 0)
+        {
             _mover.Move(_inputReader.Direction);
+            _fliper.LookAtTarget(transform.position + Vector3.right * _inputReader.Direction);
+        }
 
         if (_inputReader.GetIsJump() && _groundDetector.IsGround)
             _mover.Jump();

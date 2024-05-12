@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMover : MonoBehaviour
+public class Mover : MonoBehaviour
 {
     private const float SPEED_COEFFICIENT = 50;
 
@@ -24,12 +24,11 @@ public class PlayerMover : MonoBehaviour
     public void Move(float direction)
     {
         _rigidbody.velocity = new Vector2(_speedX * direction * SPEED_COEFFICIENT * Time.fixedDeltaTime, _rigidbody.velocity.y);
+    }
 
-        if ((direction > 0 && _isTurnRight == false)
-            || (direction < 0 && _isTurnRight))
-        {
-            _isTurnRight = !_isTurnRight;
-            transform.Flip();
-        }
+    public void Move(Transform target)
+    {
+        Vector2 newPosition = Vector2.MoveTowards(transform.position, target.position, _speedX * Time.fixedDeltaTime);
+        _rigidbody.MovePosition(newPosition);
     }
 }
