@@ -2840,7 +2840,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2865,7 +2865,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.99, y: -0.110000014, z: 0}
+  m_LocalPosition: {x: 17.797039, y: 0.47518647, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2936,7 +2936,7 @@ Transform:
   m_GameObject: {fileID: 547998648}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.85, y: -0.8555074, z: -0.13314126}
+  m_LocalPosition: {x: 4.59, y: -0.8555074, z: -0.13314126}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2958,8 +2958,10 @@ MonoBehaviour:
   _wayPoints:
   - {fileID: 2004862505}
   - {fileID: 1308342616}
+  _animator: {fileID: 1035967219}
   _maxSqrDistance: 0.03
   _waitTime: 2
+  _tryFindTime: 1
 --- !u!70 &547998651
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2969,7 +2971,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 547998648}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 674fa9ccf9dc8754d924b143849120ee, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3063,6 +3065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedX: 1
+  _runSpeedX: 2
   _jumpForce: 500
 --- !u!1 &602763521
 GameObject:
@@ -3982,7 +3985,7 @@ Transform:
   m_GameObject: {fileID: 1281949910}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.77, y: -1.13, z: 0}
+  m_LocalPosition: {x: 16.66, y: -1.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4002,6 +4005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedX: 3
+  _runSpeedX: 2
   _jumpForce: 500
 --- !u!70 &1281949914
 CapsuleCollider2D:
@@ -4370,7 +4374,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1281949912}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 6
+    OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -4396,7 +4400,7 @@ Transform:
   m_GameObject: {fileID: 1358528703}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.99, y: -0.110000014, z: 0}
+  m_LocalPosition: {x: 17.797039, y: 0.47518647, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4626,7 +4630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841727789}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.08875769, w: 0.9960533}
+  m_LocalRotation: {x: -0, y: -0, z: 0.08875716, w: 0.99605334}
   m_LocalPosition: {x: 0.46, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8926,11 +8930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2139580313564902691, guid: 959414b598866d945827dc54a7a1b724, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.69529563
+      value: 0.695296
       objectReference: {fileID: 0}
     - target: {fileID: -2139580313564902691, guid: 959414b598866d945827dc54a7a1b724, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.71872383
+      value: -0.7187236
       objectReference: {fileID: 0}
     - target: {fileID: -2139580313564902691, guid: 959414b598866d945827dc54a7a1b724, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -8958,7 +8962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4492834715727253788, guid: 959414b598866d945827dc54a7a1b724, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000019085748
+      value: -0.00000008808808
       objectReference: {fileID: 0}
     - target: {fileID: 4492834715727253788, guid: 959414b598866d945827dc54a7a1b724, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
