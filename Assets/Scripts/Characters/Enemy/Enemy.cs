@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 [RequireComponent(typeof(Fliper), typeof(EnemyVision), typeof(Mover))]
@@ -62,3 +65,73 @@ public class Enemy : MonoBehaviour
         _fliper.LookAtTarget(_target.position);
     }
 }
+
+abstract class StateMachine
+{
+    protected State CurrentState;
+    protected Dictionary<Type, State> States;
+
+    public void Update()
+    {
+        if (CurrentState == null)
+            return;
+
+        CurrentState.Update();
+        CurrentState.TryTransit();
+    }
+
+    public void ChacgeState<TState>() where TState: State 
+    {
+        if(CurrentState != null && CurrentState.GetType() == typeof(TState)) 
+            return;
+
+        if(States.TryGetValue(typeof(TState), out State newState))
+        {
+            CurrentState?.Exit();
+            CurrentState = newState;
+            CurrentState.Enter();
+        }
+    }
+}
+
+abstract class State
+{
+    protected Transition[] Transitions;
+
+    protected State(StateMachine stateMachine) {}
+
+    public virtual void Enter() { }
+    public virtual void Exit() { }
+    public virtual void Update() { }
+    public abstract bool TryTransit();
+}
+
+abstract class Transition
+{
+    protected StateMachine StateMachine;
+
+    protected Transition(StateMachine stateMachine)
+    {
+        StateMachine = stateMachine;
+    }
+
+    public abstract Type IsNeedTransit();
+
+    public abstract bool Transit();
+}
+
+//class EnemyStateMachine: StateMachine { }
+
+//class PatrolState : State { }
+
+//class IdleState : State { }
+
+//class FowllowState : State { }
+
+//class SeeTargetTransition : Transition { }
+
+//class LostTargetTransition : Transition { }
+
+//class EndIdleTransition : Transition { }
+
+//class TargetReachedTransition : Transition { }
