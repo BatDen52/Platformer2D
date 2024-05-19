@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
@@ -7,5 +8,10 @@ public class PlayerAnimator : MonoBehaviour
     public void SetSpeedX(float speedX)
     {
         _animator.SetFloat(ConstantsData.AnimatorParameters.SpeedX, Mathf.Abs(speedX));
+    }
+
+    public void SetAttackTrigger()
+    {
+        _animator.SetTrigger(ConstantsData.AnimatorParameters.IsAttack);
     }
 }
