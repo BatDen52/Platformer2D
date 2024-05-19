@@ -3,6 +3,7 @@ using UnityEditorInternal;
 using UnityEngine;
 
 [RequireComponent(typeof(Fliper), typeof(EnemyVision), typeof(Mover))]
+[RequireComponent(typeof(EnemyAttacker))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 100;
@@ -25,8 +26,10 @@ public class Enemy : MonoBehaviour
         var fliper = GetComponent<Fliper>();
         var vision = GetComponent<EnemyVision>();
         var mover = GetComponent<Mover>();
+        var attacker = GetComponent<EnemyAttacker>();
 
-        _stateMachine = new EnemyStateMachine(fliper, mover, vision, _animator, _wayPoints, _maxSqrDistance, transform, _waitTime, _tryFindTime);
+        _stateMachine = new EnemyStateMachine(fliper, mover, vision, _animator, _wayPoints, _maxSqrDistance, transform,
+            _waitTime, _tryFindTime, attacker.SqrAttackDistance);
     }
 
     private void FixedUpdate()
