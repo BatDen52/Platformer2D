@@ -28,8 +28,8 @@ public class Enemy : MonoBehaviour
         var mover = GetComponent<Mover>();
         var attacker = GetComponent<EnemyAttacker>();
 
-        _stateMachine = new EnemyStateMachine(fliper, mover, vision, _animator, _wayPoints, _maxSqrDistance, transform,
-            _waitTime, _tryFindTime, attacker.SqrAttackDistance);
+        _stateMachine = new EnemyStateMachine(fliper, mover, vision, _animator, attacker, _wayPoints, _maxSqrDistance, transform,
+            _waitTime, _tryFindTime);
     }
 
     private void FixedUpdate()
