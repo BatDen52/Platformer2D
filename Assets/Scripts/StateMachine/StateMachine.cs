@@ -15,7 +15,7 @@ abstract class StateMachine
         CurrentState.TryTransit();
     }
 
-    public void ChacgeState<TState>() where TState : State
+    public void ChangeState<TState>() where TState : State
     {
         if (CurrentState != null && CurrentState.GetType() == typeof(TState))
             return;

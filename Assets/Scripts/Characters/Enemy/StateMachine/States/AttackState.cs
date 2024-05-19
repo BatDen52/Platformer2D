@@ -31,14 +31,10 @@ class AttackState : State
     public override void Update()
     {
         if (_attacker.IsAttack == false)
-        {
-            Debug.Log("LookAtTarget");
             _fliper.LookAtTarget(_target.position);
-        }
 
         if (_attacker.CanAttack)
         {
-            _attacker.Attack();
             _animator.SetTrigger(ConstantsData.AnimatorParameters.IsAttack);
         }
     }

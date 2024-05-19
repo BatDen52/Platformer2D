@@ -8,7 +8,7 @@ class TargetReachedTransition : ReachedTransition
     public override void Transit()
     {
         base.Transit();
-        StateMachine.ChacgeState<AttackState>();
+        StateMachine.ChangeState<AttackState>();
     }
 }
 

@@ -15,6 +15,6 @@ class EnemyStateMachine : StateMachine
             { typeof(AttackState), new AttackState(this, animator, attacker, fliper, vision, attacker.Delay) }
         };
 
-        ChacgeState<PatrolState>();
+        ChangeState<PatrolState>();
     }
 }

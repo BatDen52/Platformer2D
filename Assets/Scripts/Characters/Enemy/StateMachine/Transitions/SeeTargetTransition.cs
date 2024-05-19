@@ -19,6 +19,6 @@ class SeeTargetTransition : Transition
     public override void Transit()
     {
         base.Transit();
-        StateMachine.ChacgeState<FollowState>();
+        StateMachine.ChangeState<FollowState>();
     }
 }

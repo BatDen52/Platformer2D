@@ -28,6 +28,6 @@ class LostTargetTransition : Transition
     public override void Transit()
     {
         base.Transit();
-        StateMachine.ChacgeState<IdleState>();
+        StateMachine.ChangeState<IdleState>();
     }
 }

@@ -9,6 +9,6 @@
     public override void Transit()
     {
         base.Transit();
-        StateMachine.ChacgeState<PatrolState>();
+        StateMachine.ChangeState<PatrolState>();
     }
 }
