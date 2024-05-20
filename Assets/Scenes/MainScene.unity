@@ -2605,6 +2605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
+  _delay: 2
 --- !u!61 &120990648
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3159,6 +3160,9 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64
+  _ignorRaycastLayer:
+    serializedVersion: 2
+    m_Bits: 384
 --- !u!114 &547998655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4297,6 +4301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  _animationEvent: {fileID: 2133587626}
 --- !u!114 &1281949917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4816,7 +4821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665259366}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.00000008940696, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.3548594, w: 0.9349197}
   m_LocalPosition: {x: 1.961, y: -0.008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9200,6 +9205,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -102.23
       objectReference: {fileID: 0}
+    - target: {fileID: -780156384609703048, guid: 959414b598866d945827dc54a7a1b724, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4257508509235537429, guid: 959414b598866d945827dc54a7a1b724, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0000002384186
@@ -9280,6 +9289,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 959414b598866d945827dc54a7a1b724, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2133587624}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 959414b598866d945827dc54a7a1b724, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2133587626}
     - targetCorrespondingSourceObject: {fileID: -780156384609703048, guid: 959414b598866d945827dc54a7a1b724, type: 3}
       insertIndex: -1
       addedObject: {fileID: 120990648}
@@ -9459,6 +9471,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2133587626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133587622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5049e1bfe13bd634487c826de54808b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -4,11 +4,16 @@ public class PlayerAttacker : MonoBehaviour
 {
     [SerializeField] private Sword _sword;
 
-    public bool CanAttack => _sword.IsAttack == false;
+    public bool CanAttack => _sword.IsAttack == false && _sword.IsCooldown == false;
 
-    public void Attack()
+    public void PrepareAttack()
     {
-        _sword.Attack();
+        _sword.PrepareAttack();
+    }
+    
+    public void StartAttack()
+    {
+        _sword.StartAttack();
     }
 
     public void StopAttack()

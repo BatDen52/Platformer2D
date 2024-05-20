@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(InputReader), typeof(GroundDetector), typeof(Mover))]
@@ -6,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private PlayerAnimationEvent _animationEvent;
 
     private InputReader _inputReader;
     private GroundDetector _groundDetector;
@@ -22,7 +24,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _health = new Health(_maxHealth);
-     
+
         _groundDetector = GetComponent<GroundDetector>();
         _inputReader = GetComponent<InputReader>();
         _mover = GetComponent<Mover>();
@@ -34,12 +36,18 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
+        _health.TakingDamage += OnTakingDamage;
         _collisionHandler.FinishReached += OnFinishReached;
+        _animationEvent.AttackStarted += OnAttackStarted;
+        _animationEvent.AttackEnded += OnAttackEnded;
     }
 
     private void OnDisable()
     {
+        _health.TakingDamage -= OnTakingDamage;
         _collisionHandler.FinishReached -= OnFinishReached;
+        _animationEvent.AttackStarted -= OnAttackStarted;
+        _animationEvent.AttackEnded -= OnAttackEnded;
     }
 
     private void FixedUpdate()
@@ -57,7 +65,7 @@ public class Player : MonoBehaviour
 
         if (_inputReader.GetIsAttack() && _attacker.CanAttack)
         {
-            _attacker.Attack();
+            _attacker.PrepareAttack();
             _animator.SetAttackTrigger();
         }
 
@@ -79,5 +87,20 @@ public class Player : MonoBehaviour
     private void OnFinishReached(IInteractable interactable)
     {
         _interactable = interactable;
+    }
+
+    private void OnAttackEnded()
+    {
+        _attacker.StopAttack();
+    }
+
+    private void OnAttackStarted()
+    {
+        _attacker.StartAttack();
+    }
+
+    private void OnTakingDamage()
+    {
+        _animator.SetHitTrigger();
     }
 }

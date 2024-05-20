@@ -6,6 +6,7 @@ class AttackState : State
     private Animator _animator;
     private EnemyVision _vision;
     private Fliper _fliper;
+    private LostTargetTransition _lostTargetTransition;
     private Transform _target;
 
     public AttackState(StateMachine stateMachine, Animator animator, EnemyAttacker attacker,
@@ -16,16 +17,19 @@ class AttackState : State
         _vision = vision;
         _fliper = fliper;
 
+        _lostTargetTransition = new LostTargetTransition(stateMachine, vision, tryFindTime);
+
         Transitions = new Transition[]
         {
             new SeeTargetTransition(stateMachine, vision, vision.transform, _attacker.SqrAttackDistance),
-            new LostTargetTransition(stateMachine, vision, tryFindTime)
+            _lostTargetTransition
         };
     }
 
     public override void Enter()
     {
         _vision.TrySeeTarget(out _target);
+        _lostTargetTransition.IsNeedTransit();
     }
 
     public override void Update()
@@ -35,6 +39,7 @@ class AttackState : State
 
         if (_attacker.CanAttack)
         {
+            _attacker.StartAttack();
             _animator.SetTrigger(ConstantsData.AnimatorParameters.IsAttack);
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Health
@@ -8,6 +9,8 @@ public class Health
         Value = maxValue;
     }
 
+    public event Action TakingDamage;
+
     public int MaxValue { get; private set; }
     public int Value { get; private set; }
 
@@ -17,6 +20,8 @@ public class Health
             return;
 
         ChangeValue(-damage);
+
+        TakingDamage?.Invoke();
     }
 
     public void Heal(int value)

@@ -5,6 +5,7 @@ public class EnemyVision : MonoBehaviour
 {
     [SerializeField] private Vector2 _seeAreaSize;
     [SerializeField] private LayerMask _targetLayer;
+    [SerializeField] private LayerMask _ignorRaycastLayer;
 
     private Fliper _fliper;
 
@@ -28,7 +29,7 @@ public class EnemyVision : MonoBehaviour
         if (hit != null)
         {
             Vector2 direction = (hit.transform.position - transform.position).normalized;
-            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, _seeAreaSize.x, ~(1 << gameObject.layer));
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, _seeAreaSize.x, ~_ignorRaycastLayer);
 
             if (hit2D.collider != null)
             {

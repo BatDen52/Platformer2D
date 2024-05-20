@@ -23,9 +23,9 @@ public class Enemy : MonoBehaviour
     {
         _health = new Health(_maxHealth);
         _attacker = GetComponent<EnemyAttacker>();
-        _animationEvent.Attack += _attacker.Attack;
-        _animationEvent.StartAttack += _attacker.OnStartAttack;
-        _animationEvent.EndAttack += _attacker.OnEndAttack;
+        _animationEvent.DealingDamage += _attacker.Attack;
+        _animationEvent.AttackEnded += _attacker.OnAttackEnded;
+        _health.TakingDamage += OnTakingDamage;
     }
 
     private void Start()
@@ -45,9 +45,9 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        _animationEvent.Attack -= _attacker.Attack;
-        _animationEvent.StartAttack -= _attacker.OnStartAttack;
-        _animationEvent.EndAttack -= _attacker.OnEndAttack;
+        _animationEvent.DealingDamage -= _attacker.Attack;
+        _animationEvent.AttackEnded -= _attacker.OnAttackEnded;
+        _health.TakingDamage -= OnTakingDamage;
     }
 
     public void ApplyDamage(int damage)
@@ -56,5 +56,10 @@ public class Enemy : MonoBehaviour
 
         if (_health.Value == 0)
             Destroy(gameObject);
+    }
+
+    private void OnTakingDamage()
+    {
+        _animator.SetTrigger(ConstantsData.AnimatorParameters.IsHit);
     }
 }

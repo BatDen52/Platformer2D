@@ -14,4 +14,9 @@ public class PlayerAnimator : MonoBehaviour
     {
         _animator.SetTrigger(ConstantsData.AnimatorParameters.IsAttack);
     }
+
+    public void SetHitTrigger()
+    {
+        _animator.SetTrigger(ConstantsData.AnimatorParameters.IsHit);
+    }
 }
