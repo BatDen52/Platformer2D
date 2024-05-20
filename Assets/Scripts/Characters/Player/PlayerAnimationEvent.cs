@@ -6,7 +6,7 @@ public class PlayerAnimationEvent : MonoBehaviour
     public event Action AttackStarted;
     public event Action AttackEnded;
 
-    public void InvkeAttackStartedEvent() => AttackStarted?.Invoke();
+    public void InvokeAttackStartedEvent() => AttackStarted?.Invoke();
 
-    public void InvkeAttackEndedEvent() => AttackEnded?.Invoke();
+    public void InvokeAttackEndedEvent() => AttackEnded?.Invoke();
 }
