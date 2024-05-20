@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fliper : MonoBehaviour
@@ -11,8 +9,13 @@ public class Fliper : MonoBehaviour
         if ((transform.position.x < targetPosition.x && IsTurnRight == false)
            || (transform.position.x > targetPosition.x && IsTurnRight))
         {
-            IsTurnRight = !IsTurnRight;
-            transform.Flip();
+            Flip();
         }
+    }
+
+    public void Flip()
+    {
+        IsTurnRight = !IsTurnRight;
+        transform.Flip();
     }
 }

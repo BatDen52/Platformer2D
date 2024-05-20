@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     private Health _health;
     private EnemyAttacker _attacker;
     private EnemyStateMachine _stateMachine;
+    private Fliper _fliper;
+    private EnemyVision _vision;
 
     private void Awake()
     {
@@ -30,11 +32,11 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        var fliper = GetComponent<Fliper>();
-        var vision = GetComponent<EnemyVision>();
+        _fliper = GetComponent<Fliper>();
+        _vision = GetComponent<EnemyVision>();
         var mover = GetComponent<Mover>();
 
-        _stateMachine = new EnemyStateMachine(fliper, mover, vision, _animator, _attacker, _wayPoints, _maxSqrDistance, transform,
+        _stateMachine = new EnemyStateMachine(_fliper, mover, _vision, _animator, _attacker, _wayPoints, _maxSqrDistance, transform,
             _waitTime, _tryFindTime);
     }
 
@@ -61,5 +63,8 @@ public class Enemy : MonoBehaviour
     private void OnTakingDamage()
     {
         _animator.SetTrigger(ConstantsData.AnimatorParameters.IsHit);
+
+        if (_vision.TrySeeTarget(out _) == false)
+            _fliper.Flip();
     }
 }
