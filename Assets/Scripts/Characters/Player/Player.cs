@@ -7,7 +7,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private Transform _view;
     [SerializeField] private PlayerAnimationEvent _animationEvent;
+    [SerializeField] private HealthBar _healthBar;
 
     private InputReader _inputReader;
     private GroundDetector _groundDetector;
@@ -21,9 +23,12 @@ public class Player : MonoBehaviour
 
     private Health _health;
 
+    public event Action Died;
+
     private void Awake()
     {
         _health = new Health(_maxHealth);
+        _healthBar.Initialize(_health);
 
         _groundDetector = GetComponent<GroundDetector>();
         _inputReader = GetComponent<InputReader>();
@@ -32,11 +37,14 @@ public class Player : MonoBehaviour
         _attacker = GetComponent<PlayerAttacker>();
         _collisionHandler = GetComponent<CollisionHandler>();
         _fliper = GetComponent<Fliper>();
+
+        _fliper.Initialize(_view);
     }
 
     private void OnEnable()
     {
         _health.TakingDamage += OnTakingDamage;
+        _health.Died += OnDied;
         _collisionHandler.FinishReached += OnFinishReached;
         _animationEvent.AttackStarted += OnAttackStarted;
         _animationEvent.AttackEnded += OnAttackEnded;
@@ -45,6 +53,7 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         _health.TakingDamage -= OnTakingDamage;
+        _health.Died -= OnDied;
         _collisionHandler.FinishReached -= OnFinishReached;
         _animationEvent.AttackStarted -= OnAttackStarted;
         _animationEvent.AttackEnded -= OnAttackEnded;
@@ -52,6 +61,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         _animator.SetSpeedX(_inputReader.Direction);
 
         if (_inputReader.Direction != 0)
@@ -76,7 +88,6 @@ public class Player : MonoBehaviour
     public void ApplyDamage(int damage)
     {
         _health.ApplyDamage(damage);
-        Debug.Log(_health.Value);
     }
 
     public void Heal(int value)
@@ -102,5 +113,10 @@ public class Player : MonoBehaviour
     private void OnTakingDamage()
     {
         _animator.SetHitTrigger();
+    }
+
+    private void OnDied()
+    {
+        Died?.Invoke();
     }
 }

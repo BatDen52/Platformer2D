@@ -8,8 +8,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private Transform _view;
     [SerializeField] private WayPoint[] _wayPoints;
     [SerializeField] private Animator _animator;
+    [SerializeField] private HealthBar _healthBar;
     [SerializeField] private EnemyAnimationEvent _animationEvent;
     [SerializeField] private float _maxSqrDistance = 0.1f;
     [SerializeField] private float _waitTime = 2f;
@@ -24,16 +26,20 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _health = new Health(_maxHealth);
+        _healthBar.Initialize(_health);
+
         _attacker = GetComponent<EnemyAttacker>();
         _animationEvent.DealingDamage += _attacker.Attack;
         _animationEvent.AttackEnded += _attacker.OnAttackEnded;
+        _fliper = GetComponent<Fliper>();
+        _vision = GetComponent<EnemyVision>();
+
+        _fliper.Initialize(_view);
         _health.TakingDamage += OnTakingDamage;
     }
 
     private void Start()
     {
-        _fliper = GetComponent<Fliper>();
-        _vision = GetComponent<EnemyVision>();
         var mover = GetComponent<Mover>();
 
         _stateMachine = new EnemyStateMachine(_fliper, mover, _vision, _animator, _attacker, _wayPoints, _maxSqrDistance, transform,
@@ -42,6 +48,9 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         _stateMachine.Update();
     }
 

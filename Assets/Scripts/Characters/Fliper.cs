@@ -1,13 +1,21 @@
+using System;
 using UnityEngine;
 
 public class Fliper : MonoBehaviour
 {
+    private Transform _target;
+
     public bool IsTurnRight { get; private set; } = true;
+
+    public void Initialize(Transform target)
+    {
+        _target = target;
+    }
 
     public void LookAtTarget(Vector2 targetPosition)
     {
-        if ((transform.position.x < targetPosition.x && IsTurnRight == false)
-           || (transform.position.x > targetPosition.x && IsTurnRight))
+        if ((_target.position.x < targetPosition.x && IsTurnRight == false)
+           || (_target.position.x > targetPosition.x && IsTurnRight))
         {
             Flip();
         }
@@ -16,6 +24,6 @@ public class Fliper : MonoBehaviour
     public void Flip()
     {
         IsTurnRight = !IsTurnRight;
-        transform.Flip();
+        _target.Flip();
     }
 }
