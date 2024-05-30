@@ -3,19 +3,21 @@
 class PatrolState : State, IMoveState
 {
     private WayPoint[] _wayPoints;
+    private EnemySound _audio;
     private Animator _animator;
     private Fliper _fliper;
     private Mover _mover;
     private int _wayPointIndex;
     private Transform _target;
 
-    public PatrolState(StateMachine stateMachine, Animator animator, Fliper fliper, Mover mover, EnemyVision vision,
+    public PatrolState(StateMachine stateMachine, Animator animator, Fliper fliper, Mover mover, EnemyVision vision, EnemySound audio,
                         WayPoint[] wayPoints, float maxSqrDistance, Transform transform, float sqrAttackDistance) : base(stateMachine)
     {
         _animator = animator;
         _fliper = fliper;
         _mover = mover;
         _wayPoints = wayPoints;
+        _audio = audio;
         _wayPointIndex = -1;
 
         var targetReachedTransition = new WayPointReachedTransition(stateMachine, this, maxSqrDistance, transform);
@@ -46,6 +48,7 @@ class PatrolState : State, IMoveState
     public override void Update()
     {
         _mover.Walk(_target);
+        _audio.PlayStepSpund();
     }
 
     private void ChangeTarget()

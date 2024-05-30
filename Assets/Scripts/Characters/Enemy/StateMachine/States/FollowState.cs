@@ -7,14 +7,16 @@ class FollowState : State, IMoveState
     private Mover _mover;
     private Fliper _fliper;
     private Animator _animator;
+    private EnemySound _audio;
 
-    public FollowState(StateMachine stateMachine, Animator animator, Fliper fliper, Mover mover, EnemyVision vision,
+    public FollowState(StateMachine stateMachine, Animator animator, Fliper fliper, Mover mover, EnemyVision vision, EnemySound audio,
         float tryFindTime, float sqrAttackDistance) : base(stateMachine)
     {
         _vision = vision;
         _mover = mover;
         _fliper = fliper;
         _animator = animator;
+        _audio = audio;
 
         Transitions = new Transition[]
         {
@@ -41,6 +43,7 @@ class FollowState : State, IMoveState
         if (_target != null)
         {
             _mover.Run(_target);
+            _audio.PlayRunSpund();
             _fliper.LookAtTarget(_target.position);
         }
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(InputReader), typeof(GroundDetector), typeof(Mover))]
 [RequireComponent(typeof(PlayerAnimator), typeof(CollisionHandler), typeof(PlayerAttacker))]
+[RequireComponent(typeof(PlayerSound))]
 public class Player : Character
 {
     [SerializeField] private PlayerAnimationEvent _animationEvent;
@@ -13,6 +14,7 @@ public class Player : Character
     private PlayerAnimator _animator;
     private PlayerAttacker _attacker;
     private CollisionHandler _collisionHandler;
+    private PlayerSound _audio;
 
     private IInteractable _interactable;
 
@@ -26,6 +28,7 @@ public class Player : Character
         _animator = GetComponent<PlayerAnimator>();
         _attacker = GetComponent<PlayerAttacker>();
         _collisionHandler = GetComponent<CollisionHandler>();
+        _audio = GetComponent<PlayerSound>();
     }
 
     protected override void OnEnable()
@@ -57,15 +60,22 @@ public class Player : Character
         {
             _mover.Move(_inputReader.Direction);
             Fliper.LookAtTarget(transform.position + Vector3.right * _inputReader.Direction);
+
+            if (_groundDetector.IsGround)
+                _audio.PlayStepSpund();
         }
 
         if (_inputReader.GetIsJump() && _groundDetector.IsGround)
+        {
             _mover.Jump();
+            _audio.PlayJumpSpund();
+        }
 
         if (_inputReader.GetIsAttack() && _attacker.CanAttack)
         {
             _attacker.PrepareAttack();
             _animator.SetAttackTrigger();
+            _audio.PlayAttackSpund();
         }
 
         if (_inputReader.GetIsInteract() && _interactable != null)
@@ -75,6 +85,13 @@ public class Player : Character
     protected override void OnTakingDamage()
     {
         _animator.SetHitTrigger();
+        _audio.PlayHitSpund();
+    }
+
+    protected override void OnDied()
+    {
+        base.OnDied();
+        _audio.PlayDeathSpund();
     }
 
     private void OnFinishReached(IInteractable interactable)
