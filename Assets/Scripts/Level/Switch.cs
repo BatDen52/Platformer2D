@@ -15,8 +15,11 @@ public class Switch : Interactable
 
     public override void Interact()
     {
-        if (_isLock)
+        if (IsLock)
+        {
+            base.Interact();
             return;
+        }
 
         IsActive = !IsActive;
 

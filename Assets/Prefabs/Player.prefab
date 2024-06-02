@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 4114316242169190717}
   - component: {fileID: 1386279505937527938}
   - component: {fileID: 6363571867863583840}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}

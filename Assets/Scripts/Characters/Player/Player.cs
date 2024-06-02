@@ -100,6 +100,10 @@ public class Player : Character
                 {
                     _interactable.Unlock((Key)_inventory.Take(_interactable.Key));
                 }
+                else
+                {
+                    _interactable.Interact();
+                }
             }
             else
             {
@@ -128,7 +132,7 @@ public class Player : Character
 
     private void OnMedKitFounded(MedKit medKit)
     {
-        if(Health.Value < Health.MaxValue)
+        if (Health.Value < Health.MaxValue)
         {
             Heal(medKit.Value);
             medKit.Collect();
