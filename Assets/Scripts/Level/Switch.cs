@@ -1,19 +1,23 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class Switch : MonoBehaviour, IInteractable
+public class Switch : Interactable
 {
     private Animator _animator;
 
     public bool IsActive { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _animator = GetComponent<Animator>();
     }
 
-    public void Interact()
+    public override void Interact()
     {
+        if (_isLock)
+            return;
+
         IsActive = !IsActive;
 
         if (IsActive)

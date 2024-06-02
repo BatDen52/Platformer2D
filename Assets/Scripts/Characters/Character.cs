@@ -8,42 +8,40 @@ public abstract class Character : MonoBehaviour
     [SerializeField] private Transform _view;
     [SerializeField] private HealthBar _healthBar;
 
-    private Health _health;
-    private Fliper _fliper;
-
     public event Action Died;
 
-    protected Fliper Fliper => _fliper; 
+    protected Fliper Fliper { get; private set; }
+    protected Health Health { get; private set; }   
 
     protected virtual void Awake()
     {
-        _health = new Health(_maxHealth);
-        _healthBar.Initialize(_health);
+        Health = new Health(_maxHealth);
+        _healthBar.Initialize(Health);
 
-        _fliper = GetComponent<Fliper>();
-        _fliper.Initialize(_view);
+        Fliper = GetComponent<Fliper>();
+        Fliper.Initialize(_view);
     }
 
     protected virtual void OnEnable()
     {
-        _health.TakingDamage += OnTakingDamage;
-        _health.Died += OnDied;
+        Health.TakingDamage += OnTakingDamage;
+        Health.Died += OnDied;
     }
 
     protected virtual void OnDisable()
     {
-        _health.TakingDamage -= OnTakingDamage;
-        _health.Died -= OnDied;
+        Health.TakingDamage -= OnTakingDamage;
+        Health.Died -= OnDied;
     }
 
     public void ApplyDamage(int damage)
     {
-        _health.ApplyDamage(damage);
+        Health.ApplyDamage(damage);
     }
 
     public void Heal(int value)
     {
-        _health.Heal(value);
+        Health.Heal(value);
     }
 
     protected virtual void OnDied()

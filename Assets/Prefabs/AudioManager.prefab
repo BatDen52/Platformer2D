@@ -47,12 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b90da80f697a0c4aaddf056d8b07d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _listener: {fileID: 0}
   _musicSource: {fileID: 2870135285004536503}
   _soundSource: {fileID: 7018844635468670300}
   _randomPitchSoundSource: {fileID: 3438426011656310350}
+  _defaultMusic: {fileID: 8300000, guid: f7bf2764b031e7145a30431f6497036a, type: 3}
   _lowPitch: 0
   _topPitch: 2
-  _defaultMusic: {fileID: 8300000, guid: f7bf2764b031e7145a30431f6497036a, type: 3}
+  _sqrMaxDistanceToSorce: 400
 --- !u!82 &2870135285004536503
 AudioSource:
   m_ObjectHideFlags: 0

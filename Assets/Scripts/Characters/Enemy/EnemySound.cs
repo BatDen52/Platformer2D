@@ -15,17 +15,25 @@ public class EnemySound : MonoBehaviour
 
     private float _nextPlayStepTime;
     private float _nextPlayRunTime;
+    private Transform _transform;
+
+    private void Awake()
+    {
+        _transform = transform;
+    }
 
     public void PlayStepSpund()
     {
-        if (CanPlaySound(_stepSound, ref _nextPlayStepTime))
-            _audioManager.PlayRandomPitchSound(_stepSound);
+        if (_audioManager.CanBeHeard(_transform.position))
+            if (CanPlaySound(_stepSound, ref _nextPlayStepTime))
+                _audioManager.PlayRandomPitchSound(_stepSound);
     }
 
     public void PlayRunSpund()
     {
-        if (CanPlaySound(_runSound, ref _nextPlayRunTime))
-            _audioManager.PlaySound(_runSound);
+        if (_audioManager.CanBeHeard(_transform.position))
+            if (CanPlaySound(_runSound, ref _nextPlayRunTime))
+                _audioManager.PlaySound(_runSound);
     }
 
     public void PlayHitSpund() => _audioManager.PlaySound(_hitSound);

@@ -2,17 +2,25 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] private AudioListener _listener;
+
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _soundSource;
     [SerializeField] private AudioSource _randomPitchSoundSource;
 
+    [SerializeField] private AudioClip _defaultMusic;
+
     [SerializeField] private float _lowPitch = 0f;
     [SerializeField] private float _topPitch = 2f;
 
-    [SerializeField] private AudioClip _defaultMusic;
+    [SerializeField] private float _sqrMaxDistanceToSorce = 100f;
+
+    private Transform _listenerTransform;
 
     private void Awake()
     {
+        _listenerTransform = _listener.transform;
+
         RefreshSettings();
 
         PlayMusic(_defaultMusic);
@@ -21,6 +29,9 @@ public class AudioManager : MonoBehaviour
         _soundSource.playOnAwake = false;
         _soundSource.loop = false;
     }
+
+    public bool CanBeHeard(Vector3 sourcePosition) 
+        => (sourcePosition - _listenerTransform.position).sqrMagnitude < _sqrMaxDistanceToSorce;
 
     public void PlayMusic(AudioClip clip)
     {

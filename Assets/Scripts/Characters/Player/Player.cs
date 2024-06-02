@@ -7,6 +7,8 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] private PlayerAnimationEvent _animationEvent;
+    [SerializeField] private Canvas _interactableCanvas;
+    [SerializeField] private InventoryView _inventoryView;
 
     private InputReader _inputReader;
     private GroundDetector _groundDetector;
@@ -15,6 +17,8 @@ public class Player : Character
     private PlayerAttacker _attacker;
     private CollisionHandler _collisionHandler;
     private PlayerSound _audio;
+
+    private Inventory _inventory;
 
     private IInteractable _interactable;
 
@@ -29,24 +33,36 @@ public class Player : Character
         _attacker = GetComponent<PlayerAttacker>();
         _collisionHandler = GetComponent<CollisionHandler>();
         _audio = GetComponent<PlayerSound>();
+
+        _inventory = new Inventory();
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        _collisionHandler.FinishReached += OnFinishReached;
+        _collisionHandler.InteractableFounded += OnInteractableFounded;
+        _collisionHandler.MedKitFounded += OnMedKitFounded;
+        _collisionHandler.KeyFounded += OnKeyFounded;
         _animationEvent.AttackStarted += OnAttackStarted;
         _animationEvent.AttackEnded += OnAttackEnded;
+
+        _inventory.ItemAdded += AddItemToInventory;
+        _inventory.ItemRemoved += _inventoryView.Remove;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
 
-        _collisionHandler.FinishReached -= OnFinishReached;
+        _collisionHandler.InteractableFounded -= OnInteractableFounded;
+        _collisionHandler.MedKitFounded -= OnMedKitFounded;
+        _collisionHandler.KeyFounded -= OnKeyFounded;
         _animationEvent.AttackStarted -= OnAttackStarted;
         _animationEvent.AttackEnded -= OnAttackEnded;
+
+        _inventory.ItemAdded -= AddItemToInventory;
+        _inventory.ItemRemoved -= _inventoryView.Remove;
     }
 
     private void FixedUpdate()
@@ -79,7 +95,19 @@ public class Player : Character
         }
 
         if (_inputReader.GetIsInteract() && _interactable != null)
-            _interactable.Interact();
+        {
+            if (_interactable.IsLock)
+            {
+                if (_inventory.Contains(_interactable.Key))
+                {
+                    _interactable.Unlock((Key)_inventory.Take(_interactable.Key));
+                }
+            }
+            else
+            {
+                _interactable.Interact();
+            }
+        }
     }
 
     protected override void OnTakingDamage()
@@ -94,9 +122,24 @@ public class Player : Character
         _audio.PlayDeathSpund();
     }
 
-    private void OnFinishReached(IInteractable interactable)
+    private void OnInteractableFounded(IInteractable interactable)
     {
         _interactable = interactable;
+        _interactableCanvas.gameObject.SetActive(interactable != null);
+    }
+
+    private void OnMedKitFounded(MedKit medKit)
+    {
+        if(Health.Value < Health.MaxValue)
+        {
+            Heal(medKit.Value);
+            medKit.Collect();
+        }
+    }
+
+    private void OnKeyFounded(Key key)
+    {
+        _inventory.Add(key);
     }
 
     private void OnAttackEnded()
@@ -107,5 +150,11 @@ public class Player : Character
     private void OnAttackStarted()
     {
         _attacker.StartAttack();
+    }
+
+    private void AddItemToInventory(IItem item)
+    {
+        _inventoryView.Add(item);
+        item.Collect();
     }
 }
