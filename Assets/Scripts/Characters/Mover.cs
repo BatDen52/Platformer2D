@@ -10,7 +10,6 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _jumpForce = 500;
 
     private Rigidbody2D _rigidbody;
-    private bool _isTurnRight = true;
 
     private void Start()
     {
@@ -19,6 +18,7 @@ public class Mover : MonoBehaviour
 
     public void Jump()
     {
+        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
         _rigidbody.AddForce(new Vector2(0, _jumpForce));
     }
 

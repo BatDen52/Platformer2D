@@ -1,17 +1,16 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(InputReader), typeof(GroundDetector), typeof(Mover))]
+[RequireComponent(typeof(InputReader), typeof(PlayerSound), typeof(Mover))]
 [RequireComponent(typeof(PlayerAnimator), typeof(CollisionHandler), typeof(PlayerAttacker))]
-[RequireComponent(typeof(PlayerSound))]
 public class Player : Character
 {
     [SerializeField] private PlayerAnimationEvent _animationEvent;
     [SerializeField] private Canvas _interactableCanvas;
     [SerializeField] private InventoryView _inventoryView;
+    [SerializeField] private GroundDetector _groundDetector;
 
     private InputReader _inputReader;
-    private GroundDetector _groundDetector;
     private Mover _mover;
     private PlayerAnimator _animator;
     private PlayerAttacker _attacker;
@@ -26,7 +25,6 @@ public class Player : Character
     {
         base.Awake();
 
-        _groundDetector = GetComponent<GroundDetector>();
         _inputReader = GetComponent<InputReader>();
         _mover = GetComponent<Mover>();
         _animator = GetComponent<PlayerAnimator>();
