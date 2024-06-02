@@ -36,7 +36,7 @@ class AttackState : State
 
     public override void Update()
     {
-        if (_attacker.IsAttack == false)
+        if (_attacker.IsAttack == false && _target != null)
             _fliper.LookAtTarget(_target.position);
 
         if (_attacker.CanAttack)
