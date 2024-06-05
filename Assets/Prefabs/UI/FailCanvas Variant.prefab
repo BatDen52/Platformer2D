@@ -124,6 +124,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6458410683902201312, guid: 20db689de331b154293467d5bd62ccac, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 5079172190208
+      objectReference: {fileID: 0}
     - target: {fileID: 6722987057928954941, guid: 20db689de331b154293467d5bd62ccac, type: 3}
       propertyPath: _continueButton
       value: 

@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 3e3a5055610714f4f97c1ea076facac1, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 35722956800
+    m_Localized: Game Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788285952000
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1133305204736
+    m_Localized: Levels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1225986740224
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1537535447040
+    m_Localized: Levels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1735607259136
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1863483199488
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2510911770624
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2628624912384
+    m_Localized: Sounds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4299623043072
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4484189196288
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4634471108608
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4889413488640
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5079172190208
+    m_Localized: Fail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5335658074112
+    m_Localized: Win
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5455178960896
+    m_Localized: Next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6354848780288
+    m_Localized: F
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4692905664571968102}
   - component: {fileID: 4730019405913072339}
   - component: {fileID: 262406136457138901}
+  - component: {fileID: 6642683001764480534}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -210,6 +211,46 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6642683001764480534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182099108827077032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3e3a5055610714f4f97c1ea076facac1
+    m_TableEntryReference:
+      m_KeyId: 5335658074112
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 262406136457138901}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &5108529134910285008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,6 +259,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6174663628361584228}
     m_Modifications:
+    - target: {fileID: 2109511504581172233, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 5455178960896
+      objectReference: {fileID: 0}
     - target: {fileID: 5836669180996112414, guid: 7540f0bb21f85fb4195ff2de7c2f7d7c, type: 3}
       propertyPath: m_text
       value: Next
