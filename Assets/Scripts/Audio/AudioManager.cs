@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
         _soundSource.loop = false;
     }
 
-    public bool CanBeHeard(Vector3 sourcePosition) 
+    public bool CanBeHeard(Vector3 sourcePosition)
         => (sourcePosition - _listenerTransform.position).sqrMagnitude < _sqrMaxDistanceToSorce;
 
     public void PlayMusic(AudioClip clip)
@@ -53,14 +53,14 @@ public class AudioManager : MonoBehaviour
 
     public void RefreshSettings()
     {
-        _musicSource.mute = PlayerPrefs.GetInt(ConstantsData.SavaData.MUSIC_MUTE_KEY, ConstantsData.SavaData.IS_ON_VALUE) == ConstantsData.SavaData.IS_OFF_VALUE;
-        
-        _soundSource.mute = PlayerPrefs.GetInt(ConstantsData.SavaData.SOUND_MUTE_KEY, ConstantsData.SavaData.IS_ON_VALUE) == ConstantsData.SavaData.IS_OFF_VALUE;
-        _randomPitchSoundSource.mute = PlayerPrefs.GetInt(ConstantsData.SavaData.SOUND_MUTE_KEY, ConstantsData.SavaData.IS_ON_VALUE) == ConstantsData.SavaData.IS_OFF_VALUE;
-      
-        _musicSource.volume = PlayerPrefs.GetFloat(ConstantsData.SavaData.MUSIC_KEY, ConstantsData.SavaData.DEFAULT_VOLUME);
-        
-        _soundSource.volume = PlayerPrefs.GetFloat(ConstantsData.SavaData.SOUND_KEY, ConstantsData.SavaData.DEFAULT_VOLUME);
-        _randomPitchSoundSource.volume = PlayerPrefs.GetFloat(ConstantsData.SavaData.SOUND_KEY, ConstantsData.SavaData.DEFAULT_VOLUME);
+        _musicSource.mute = SaveService.MusicIsOn == false;
+
+        _soundSource.mute = SaveService.SoundIsOn == false;
+        _randomPitchSoundSource.mute = SaveService.SoundIsOn == false;
+
+        _musicSource.volume = SaveService.MusicVolume;
+
+        _soundSource.volume = SaveService.SoundVolume;
+        _randomPitchSoundSource.volume = SaveService.SoundVolume;
     }
 }

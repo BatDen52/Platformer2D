@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameLogic : MonoBehaviour
 {
@@ -11,10 +12,17 @@ public class GameLogic : MonoBehaviour
     {
         _failWindow.Initialize(_player);
         _finish.Activated += _winWindow.Open;
+        _finish.Activated += UnlockNextLevel;
     }
 
     private void OnDestroy()
     {
         _finish.Activated -= _winWindow.Open;
+        _finish.Activated -= UnlockNextLevel;
+    }
+
+    private void UnlockNextLevel()
+    {
+        SaveService.UnlockNextLevel(SceneManager.GetActiveScene().name);
     }
 }

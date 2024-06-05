@@ -246,8 +246,7 @@ MonoBehaviour:
   _isLock: 0
   _lock: {fileID: 202080275701247527}
   _messageBox: {fileID: 5534595836960190671}
-  _switches:
-  - {fileID: 0}
+  _switches: []
   _switchIcon: {fileID: 21300000, guid: aab49b36451f2d44ab2e9581b56c2f88, type: 3}
 --- !u!1001 &5200706850123082753
 PrefabInstance:

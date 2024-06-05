@@ -5214,6 +5214,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4571186250344646280, guid: 466b99848b5fc5048b57625bf2f3f45d, type: 3}
+      propertyPath: _switches.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571186250344646280, guid: 466b99848b5fc5048b57625bf2f3f45d, type: 3}
       propertyPath: _switches.Array.data[0]
       value: 
       objectReference: {fileID: 883703773}
