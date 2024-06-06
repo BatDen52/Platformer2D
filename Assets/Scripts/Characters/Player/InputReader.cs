@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InputReader : MonoBehaviour
+public class InputReader : MonoBehaviour, IInputReader
 {    
     private bool _isJump;
     private bool _isInterect;

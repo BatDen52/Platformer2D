@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(InputReader), typeof(PlayerSound), typeof(Mover))]
-[RequireComponent(typeof(PlayerAnimator), typeof(CollisionHandler), typeof(PlayerAttacker))]
+[RequireComponent(typeof(PlayerAttacker), typeof(PlayerSound), typeof(Mover))]
+[RequireComponent(typeof(PlayerAnimator), typeof(CollisionHandler))]
 public class Player : Character
 {
     [SerializeField] private PlayerAnimationEvent _animationEvent;
@@ -10,7 +10,7 @@ public class Player : Character
     [SerializeField] private InventoryView _inventoryView;
     [SerializeField] private GroundDetector _groundDetector;
 
-    private InputReader _inputReader;
+    private IInputReader _inputReader;
     private Mover _mover;
     private PlayerAnimator _animator;
     private PlayerAttacker _attacker;
@@ -24,8 +24,6 @@ public class Player : Character
     protected override void Awake()
     {
         base.Awake();
-
-        _inputReader = GetComponent<InputReader>();
         _mover = GetComponent<Mover>();
         _animator = GetComponent<PlayerAnimator>();
         _attacker = GetComponent<PlayerAttacker>();
@@ -111,6 +109,8 @@ public class Player : Character
             }
         }
     }
+
+    public void Initialize(IInputReader inputReader) => _inputReader = inputReader;
 
     protected override void OnTakingDamage()
     {

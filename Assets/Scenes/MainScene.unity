@@ -8675,6 +8675,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8267535142722253361, guid: 3fcb1665080d8674087d57e7b7dc5c88, type: 3}
+      propertyPath: _mobileInput
+      value: 
+      objectReference: {fileID: 1550689134454192860}
     - target: {fileID: 8285090382664462785, guid: 3fcb1665080d8674087d57e7b7dc5c88, type: 3}
       propertyPath: _inventoryView
       value: 
@@ -8837,6 +8841,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7fb2d5bc0cf5243ab6b9d5519aa597, type: 3}
+--- !u!114 &1550689134454192860 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 803565082445661917, guid: 3a7fb2d5bc0cf5243ab6b9d5519aa597, type: 3}
+  m_PrefabInstance: {fileID: 1550689134454192859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa12fc4b6b12cf24c9de738e518a2a47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2411879286244243196
 PrefabInstance:
   m_ObjectHideFlags: 0
