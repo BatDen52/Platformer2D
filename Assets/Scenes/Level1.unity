@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e000afc8e94834d9389749da0fb5c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isMobile: 1
+  _isMobile: 0
 --- !u!114 &61827674 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6722987057928954941, guid: 20db689de331b154293467d5bd62ccac, type: 3}
@@ -3834,6 +3834,10 @@ PrefabInstance:
       value: 0.11243402
       objectReference: {fileID: 0}
     - target: {fileID: 8267535142722253361, guid: 3fcb1665080d8674087d57e7b7dc5c88, type: 3}
+      propertyPath: _isMobile
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267535142722253361, guid: 3fcb1665080d8674087d57e7b7dc5c88, type: 3}
       propertyPath: _mobileInput
       value: 
       objectReference: {fileID: 1030833044}
@@ -4202,7 +4206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32944a5cf620ad47bb4e36487805f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isMobile: 1
+  _isMobile: 0
   _movePointer: {fileID: 1182582093}
   _joystick: {fileID: 1335506883}
   _jumpPointer: {fileID: 1119069828}

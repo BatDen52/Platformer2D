@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa602504cfc5a6c4bad60662b6568172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isMobile: 1
+  _isMobile: 0
   _player: {fileID: 8285090382664462785}
   _inputReader: {fileID: 8634068959523577531}
   _mobileInput: {fileID: 0}

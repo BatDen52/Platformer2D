@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 public class MoveTutorial : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class MoveTutorial : MonoBehaviour
 
     private void Awake()
     {
-        if(_isMobile)
+        if (Application.isEditor && _isMobile || YandexGame.EnvironmentData.isMobile || YandexGame.EnvironmentData.isTablet)
             gameObject.SetActive(false);
     }
 }

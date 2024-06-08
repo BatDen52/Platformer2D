@@ -14,9 +14,6 @@ public class InputReader : MonoBehaviour, IInputReader
         if (TimeManager.IsPaused)
             return;
 
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
-
         Direction = Input.GetAxis(ConstantsData.InputData.HORIZONTAL_AXIS);
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -24,6 +21,9 @@ public class InputReader : MonoBehaviour, IInputReader
 
         if (Input.GetKeyDown(KeyCode.F))
             _isInterect = true;
+
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            return;
 
         if (Input.GetMouseButtonDown(0))
             _isAttack = true;
