@@ -41,7 +41,14 @@ public class MainMenu : MonoBehaviour
 
     private void LoadScene()
     {
-        SceneManager.LoadScene(DEFAULT_LEVEL_INDEX);
+        if (SaveService.HasUnlockedLevel)
+        {
+            SceneManager.LoadScene(SaveService.LastUnlockedLevel);
+        }
+        else
+        {
+            SceneManager.LoadScene(DEFAULT_LEVEL_INDEX);
+        }
     }
 
     private void ShowMenu()

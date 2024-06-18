@@ -14,6 +14,8 @@ public static class SaveService
     public static float MusicVolume => _saveData.MusicVolume;
     public static float SoundVolume => _saveData.SoundVolume;
     public static List<string> UnlockedLevels => _saveData.UnlockedLevels;
+    public static bool HasUnlockedLevel => _saveData.UnlockedLevels.Count > 1;
+    public static string LastUnlockedLevel => _saveData.UnlockedLevels[_saveData.UnlockedLevels.Count - 1];
 
     public static void Initialize(List<string> sceneNames)
     {
