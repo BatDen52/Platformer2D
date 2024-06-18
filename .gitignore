@@ -23,6 +23,7 @@ ExportedObj/
 *.pidb
 *.booproj
 *.svd
+*.zip
 *.pdb
 *.opendb
 *.vscode
