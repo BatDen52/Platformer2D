@@ -21,6 +21,7 @@ public class EntryPoint : MonoBehaviour
         SetLanguage();
     }
 
+#if UNITY_EDITOR
     private void Reset()
     {
         int extentionLength = 6;
@@ -37,6 +38,7 @@ public class EntryPoint : MonoBehaviour
             }
         }
     }
+#endif
 
     private void SetLanguage()
     {

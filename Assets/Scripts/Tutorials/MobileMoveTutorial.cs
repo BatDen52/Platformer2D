@@ -16,7 +16,7 @@ public class MobileMoveTutorial : MonoBehaviour
 
     private void Awake()
     {
-        if (Application.isEditor && _isMobile == false || YandexGame.EnvironmentData.isDesktop)
+        if (Application.isEditor && _isMobile == false || Application.isEditor == false && YandexGame.EnvironmentData.isDesktop)
             gameObject.SetActive(false);
     }
 

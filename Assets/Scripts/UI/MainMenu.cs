@@ -1,6 +1,9 @@
+using System;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
@@ -12,6 +15,15 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private SettingstWindow _settingstWindow;
     [SerializeField] private SelectLevelWindow _selectLevelWindow;
+
+    [SerializeField] private float _waitingInAlphaTime = 0.5f;
+    [SerializeField] private float _showingTime;
+    [SerializeField] private CanvasGroup _menuPanel;
+
+    private void Awake()
+    {
+        ShowMenu();
+    }
 
     private void OnEnable()
     {
@@ -30,5 +42,34 @@ public class MainMenu : MonoBehaviour
     private void LoadScene()
     {
         SceneManager.LoadScene(DEFAULT_LEVEL_INDEX);
+    }
+
+    private void ShowMenu()
+    {
+        try
+        {
+            StartCoroutine(Showing());
+        }
+        catch (Exception) { }
+    }
+
+    private IEnumerator Showing()
+    {
+        yield return LocalizationSettings.InitializationOperation;
+        yield return new WaitForSeconds(_waitingInAlphaTime);
+
+        float time = 0;
+        float startAlpha = 0;
+        float finishAlpha = 1;
+
+        while (time < _showingTime)
+        {
+            time += Time.deltaTime;
+
+            _menuPanel.alpha = Mathf.Lerp(startAlpha, finishAlpha, time / _showingTime);
+            yield return null;
+        }
+
+        _menuPanel.alpha = finishAlpha;
     }
 }
