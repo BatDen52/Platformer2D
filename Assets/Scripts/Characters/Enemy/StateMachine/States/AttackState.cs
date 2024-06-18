@@ -2,7 +2,7 @@
 
 class AttackState : State
 {
-    private EnemyAttacker _attacker;
+    private Attacker _attacker;
     private Animator _animator;
     private EnemyVision _vision;
     private Fliper _fliper;
@@ -10,7 +10,7 @@ class AttackState : State
     private LostTargetTransition _lostTargetTransition;
     private Transform _target;
 
-    public AttackState(StateMachine stateMachine, Animator animator, EnemyAttacker attacker,
+    public AttackState(StateMachine stateMachine, Animator animator, Attacker attacker,
                         Fliper fliper, EnemyVision vision, EnemySound audio, float tryFindTime) : base(stateMachine)
     {
         _animator = animator;

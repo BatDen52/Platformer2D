@@ -4,7 +4,7 @@ using UnityEngine;
 
 class EnemyStateMachine : StateMachine
 {
-    public EnemyStateMachine(Fliper fliper, Mover mover, EnemyVision vision, EnemyGroundDetector groundDetector, Animator animator, EnemyAttacker attacker, EnemySound audio, WayPoint[] wayPoints,
+    public EnemyStateMachine(Fliper fliper, Mover mover, EnemyVision vision, EnemyGroundDetector groundDetector, Animator animator, Attacker attacker, EnemySound audio, WayPoint[] wayPoints,
                             float maxSqrDistance, Transform transform, float waitTime, float tryFindTime)
     {
         States = new Dictionary<Type, State>()

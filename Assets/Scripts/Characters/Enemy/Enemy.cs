@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyAttacker), typeof(EnemyVision), typeof(Mover))]
+[RequireComponent(typeof(Attacker), typeof(EnemyVision), typeof(Mover))]
 [RequireComponent(typeof(EnemySound), typeof(EnemyGroundDetector))]
 public class Enemy : Character
 {
@@ -11,7 +11,7 @@ public class Enemy : Character
     [SerializeField] private float _waitTime = 2f;
     [SerializeField] private float _tryFindTime = 1f;
 
-    private EnemyAttacker _attacker;
+    private Attacker _attacker;
     private EnemyStateMachine _stateMachine;
     private EnemyVision _vision;
     private EnemyGroundDetector _groundDetector;
@@ -21,7 +21,7 @@ public class Enemy : Character
     {
         base.Awake();
 
-        _attacker = GetComponent<EnemyAttacker>();
+        _attacker = GetComponent<Attacker>();
         _animationEvent.DealingDamage += _attacker.Attack;
         _animationEvent.AttackEnded += _attacker.OnAttackEnded;
         _vision = GetComponent<EnemyVision>();

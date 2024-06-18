@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerAttacker), typeof(PlayerSound), typeof(Mover))]
+[RequireComponent(typeof(Attacker), typeof(PlayerSound), typeof(Mover))]
 [RequireComponent(typeof(PlayerAnimator), typeof(CollisionHandler))]
 public class Player : Character
 {
@@ -13,7 +13,7 @@ public class Player : Character
     private IInputReader _inputReader;
     private Mover _mover;
     private PlayerAnimator _animator;
-    private PlayerAttacker _attacker;
+    private Attacker _attacker;
     private CollisionHandler _collisionHandler;
     private PlayerSound _audio;
 
@@ -26,7 +26,7 @@ public class Player : Character
         base.Awake();
         _mover = GetComponent<Mover>();
         _animator = GetComponent<PlayerAnimator>();
-        _attacker = GetComponent<PlayerAttacker>();
+        _attacker = GetComponent<Attacker>();
         _collisionHandler = GetComponent<CollisionHandler>();
         _audio = GetComponent<PlayerSound>();
 
@@ -40,8 +40,8 @@ public class Player : Character
         _collisionHandler.InteractableFounded += OnInteractableFounded;
         _collisionHandler.MedKitFounded += OnMedKitFounded;
         _collisionHandler.KeyFounded += OnKeyFounded;
-        _animationEvent.AttackStarted += OnAttackStarted;
-        _animationEvent.AttackEnded += OnAttackEnded;
+        _animationEvent.DealingDamage += _attacker.Attack;
+        _animationEvent.AttackEnded += _attacker.OnAttackEnded;
 
         _inventory.ItemAdded += AddItemToInventory;
         _inventory.ItemRemoved += _inventoryView.Remove;
@@ -54,8 +54,8 @@ public class Player : Character
         _collisionHandler.InteractableFounded -= OnInteractableFounded;
         _collisionHandler.MedKitFounded -= OnMedKitFounded;
         _collisionHandler.KeyFounded -= OnKeyFounded;
-        _animationEvent.AttackStarted -= OnAttackStarted;
-        _animationEvent.AttackEnded -= OnAttackEnded;
+        _animationEvent.DealingDamage -= _attacker.Attack;
+        _animationEvent.AttackEnded -= _attacker.OnAttackEnded;
 
         _inventory.ItemAdded -= AddItemToInventory;
         _inventory.ItemRemoved -= _inventoryView.Remove;
@@ -71,7 +71,7 @@ public class Player : Character
         if (_inputReader.Direction != 0)
         {
             _mover.Move(_inputReader.Direction);
-            Fliper.LookAtTarget(transform.position + Vector3.right * _inputReader.Direction);
+            Fliper.LookAtTarget(View.transform.position + Vector3.right * _inputReader.Direction);
 
             if (_groundDetector.IsGround)
                 _audio.PlayStepSpund();
@@ -85,7 +85,7 @@ public class Player : Character
 
         if (_inputReader.GetIsAttack() && _attacker.CanAttack)
         {
-            _attacker.PrepareAttack();
+            _attacker.StartAttack();
             _animator.SetAttackTrigger();
             _audio.PlayAttackSpund();
         }
@@ -142,16 +142,6 @@ public class Player : Character
     private void OnKeyFounded(Key key)
     {
         _inventory.Add(key);
-    }
-
-    private void OnAttackEnded()
-    {
-        _attacker.StopAttack();
-    }
-
-    private void OnAttackStarted()
-    {
-        _attacker.StartAttack();
     }
 
     private void AddItemToInventory(IItem item)

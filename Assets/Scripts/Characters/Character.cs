@@ -11,7 +11,8 @@ public abstract class Character : MonoBehaviour
     public event Action Died;
 
     protected Fliper Fliper { get; private set; }
-    protected Health Health { get; private set; }   
+    protected Health Health { get; private set; }
+    protected Transform View => _view;   
 
     protected virtual void Awake()
     {

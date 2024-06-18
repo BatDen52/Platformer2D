@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 576460604866361329}
   - component: {fileID: 8697970295903156092}
   - component: {fileID: 202080275701247527}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 3634852914766096325}
   - component: {fileID: 3246584606052640980}
   - component: {fileID: 4571186250344646280}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Finish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,6 +256,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1324202039311402238}
     m_Modifications:
+    - target: {fileID: 5007912918938033991, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062169252616403695, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5458261541817527425, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -339,6 +347,14 @@ PrefabInstance:
     - target: {fileID: 6057275445652286045, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
       propertyPath: m_Name
       value: MessageCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057275445652286045, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120925663162365644, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

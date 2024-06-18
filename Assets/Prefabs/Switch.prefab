@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 189285269188193311}
   - component: {fileID: 7677575680431383135}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: lock-up_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4089014816610805586}
   - component: {fileID: 7691938785242365293}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: lock-up_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2348362067572504362}
   - component: {fileID: 4714707630073140652}
   - component: {fileID: 4480068340396328675}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 8315591450982719342}
   - component: {fileID: 6716253243090740667}
   - component: {fileID: 4831521391528773371}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,6 +446,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4133835940499810909}
     m_Modifications:
+    - target: {fileID: 5007912918938033991, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062169252616403695, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5458261541817527425, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -529,6 +537,14 @@ PrefabInstance:
     - target: {fileID: 6057275445652286045, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
       propertyPath: m_Name
       value: MessageCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057275445652286045, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120925663162365644, guid: 3a4166fb97b35994c8b1f02962e74a97, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
