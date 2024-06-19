@@ -32,7 +32,6 @@ public class Attacker : MonoBehaviour
 
     public void Attack()
     {
-        print("Attack");
         Collider2D hit = Physics2D.OverlapCircle(GetAttackOrigin(), _radius, _targetLayer);
 
         if (hit != null && hit.TryGetComponent(out Character character))
